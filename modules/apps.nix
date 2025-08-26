@@ -35,7 +35,6 @@
     rectangle
     tldr
     tree
-    ungoogled-chromium
     zed-editor
   ];
 
@@ -60,6 +59,7 @@
     # `brew install --cask`
     casks = [
       "1password"
+      "ungoogled-chromium"
     ];
   };
 }
