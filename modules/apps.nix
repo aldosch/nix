@@ -26,7 +26,6 @@
     doggo
     fish
     gh
-    ghostty
     git
     htop
     jq
