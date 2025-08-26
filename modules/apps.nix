@@ -16,8 +16,25 @@
   #
   # Related Discussion: https://discourse.nixos.org/t/darwin-again/29331
   environment.systemPackages = with pkgs; [
+		_1password-cli
+    bun
+    curl
+    dig
+    doggo
+    fish
+    gh
+    ghostty
     git
-		tree
+    htop
+    jq
+    karabiner-elements
+    nodePackages_latest.vercel
+    raycast
+    rectangle
+    tldr
+    tree
+    ungoogled-chromium
+    zed-editor
   ];
 
   # The apps installed by homebrew are not managed by nix, and not reproducible!
@@ -36,13 +53,11 @@
     # ];
 
     # `brew install`
-    brews = [
-      "cowsay"
-    ];
+    brews = [];
 
     # `brew install --cask`
     casks = [
-      "ungoogled-chromium"
+      "1password"
     ];
   };
 }
