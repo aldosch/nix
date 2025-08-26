@@ -1,4 +1,4 @@
-{ pkgs, ...}: {
+{ pkgs, lib, ...}: {
 
   ##########################################################################
   #
@@ -15,6 +15,9 @@
   # But on macOS, it's less stable than homebrew.
   #
   # Related Discussion: https://discourse.nixos.org/t/darwin-again/29331
+
+  nixpkgs.config.allowUnfree = true;
+
   environment.systemPackages = with pkgs; [
 		_1password-cli
     bun
