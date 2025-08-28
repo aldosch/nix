@@ -61,6 +61,7 @@
       "ungoogled-chromium"
       "karabiner-elements"
       "transmission"
+      "iina"
     ];
   };
 }
