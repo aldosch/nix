@@ -20,19 +20,36 @@
 
   environment.systemPackages = with pkgs; [
 		_1password-cli
+    bat
     bun
     curl
     dig
     doggo
+    ente-auth
+    ffmpeg
     fish
+    fzf
     gh
     git
     htop
+    httrack
+    ice-bar
+    iina
+    itsycal
     jq
+    mullvad-vpn
+    ncdu
+    neovim
     nodePackages_latest.vercel
+    openssl
+    pay-respects
     raycast
+    rclone
     rectangle
-    tldr
+    ripgrep
+    rsync
+    tlrc
+    tmux
     tree
     zed-editor
   ];
@@ -58,10 +75,11 @@
     # `brew install --cask`
     casks = [
       "1password"
-      "ungoogled-chromium"
+      "alfred@4"
+      "imageoptim"
       "karabiner-elements"
       "transmission"
-      "iina"
+      "ungoogled-chromium"
     ];
   };
 }
