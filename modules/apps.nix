@@ -29,7 +29,6 @@
     git
     htop
     jq
-    karabiner-elements
     nodePackages_latest.vercel
     raycast
     rectangle
@@ -60,6 +59,8 @@
     casks = [
       "1password"
       "ungoogled-chromium"
+      "karabiner-elements"
+      "transmission"
     ];
   };
 }
