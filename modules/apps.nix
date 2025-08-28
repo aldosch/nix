@@ -25,7 +25,6 @@
     curl
     dig
     doggo
-    ente-auth
     ffmpeg
     fish
     fzf
@@ -76,6 +75,7 @@
     casks = [
       "1password"
       "alfred@4"
+      "ente-auth"
       "imageoptim"
       "karabiner-elements"
       "transmission"
