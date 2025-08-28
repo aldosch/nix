@@ -36,7 +36,6 @@
     iina
     itsycal
     jq
-    mullvad-vpn
     ncdu
     neovim
     nodePackages_latest.vercel
@@ -78,6 +77,7 @@
       "ente-auth"
       "imageoptim"
       "karabiner-elements"
+      "mullvad-vpn"
       "transmission"
       "ungoogled-chromium"
     ];
