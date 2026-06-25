@@ -1,0 +1,112 @@
+# macOS's System configuration 🖥️
+# https://nix-darwin.github.io/nix-darwin/manual/index.html
+{ pkgs, hostname, ... }:
+let
+  # Host-specific system preferences
+  hostPrefs = {
+    min = {
+      hideMenuBar = false;
+      # Add more min-specific preferences here
+    };
+    book = {
+      hideMenuBar = false;
+      # Add more book-specific preferences here
+    };
+  };
+
+  # Get preferences for current host
+  prefs = hostPrefs.${hostname};
+in
+{
+  system = {
+    stateVersion = 6;
+    startup.chime = false;
+    defaults = {
+      CustomUserPreferences = {
+        "com.apple.TextEdit" = {
+          RichText = false;
+          SmartQuotes = false;
+        };
+      };
+      dock = {
+        appswitcher-all-displays = true;                    # 🔄 Show app switcher (Cmd-Tab) on all displays.
+        autohide = true;                                    # 🙈 Auto-hide Dock to save screen space. Default is false.
+        mineffect = "scale";                                # 🧞 Minimize window effect: "genie" or "scale".
+        minimize-to-application = false;                     # 📥 Minimize windows into app icon instead of separate slot.
+        orientation = "left";                               # ↔️ Dock position: "bottom" (default), "left", or "right".
+        scroll-to-open = true;                              # 🖱️ Scroll over Dock app to cycle through its windows.
+        show-recents = false;                               # 🕓 Show recent applications section (disabled; conflicts with static-only).
+        static-only = true;                                 # 📌 Hide running-indicator-only apps; show pinned items only.
+        tilesize = 48;                                      # 🟦 Icon size in Dock (pixels).
+        wvous-bl-corner = 1;                                # ↙️ Hot corner action for bottom left corner
+        wvous-br-corner = 1;                                # ↘️ Hot corner action for bottom right corner
+        wvous-tl-corner = 1;                                # ↖️ Hot corner action for top left corner
+        wvous-tr-corner = 1;                                # ↗️ Hot corner action for top left corner
+        # persistent-apps = [                               # 📑 Persistent applications, spacers, files, and folders in the dock.
+        #   { app = "/Applications/Launchpad.app"; }        # 🚧 TODO FIX: https://github.com/nix-darwin/nix-darwin/issues/1250
+        # ];
+      };
+      finder = {
+        _FXSortFoldersFirst = true;                         # 📂 Sort folders first when sorting by name.
+        _FXSortFoldersFirstOnDesktop = true;                # 📂 Sort folders on desktop.
+        AppleShowAllExtensions = true;                      # 🏷️ Always show filename extensions.
+        AppleShowAllFiles = true;                           # 👀 Show hidden files (e.g., dotfiles).
+        CreateDesktop = false;                              # 🧹 Hide desktop icons (declutter desktop).
+        FXEnableExtensionChangeWarning = false;             # 🚫 Disable warning when changing file extensions.
+        FXRemoveOldTrashItems = true;                       # 🗑️ Auto-empty trash items older than 30 days.
+        NewWindowTarget = "Other";                          # 📁 New Finder windows target custom path (see below).
+        NewWindowTargetPath = "~/";                         # 🏡 Path used when NewWindowTarget = "Other".
+        ShowPathbar = true;                                 # 🛤️ Show path bar at bottom of Finder windows.
+        ShowStatusBar = true;                               # ℹ️ Show status bar (item counts, free space).
+      };
+      ".GlobalPreferences" = {
+        "com.apple.mouse.scaling" = 3.0;                    # 🖱️ Mouse tracking speed (higher is faster). May require logout/reboot.
+      };
+      hitoolbox = {
+        AppleFnUsageType = "Do Nothing";                    # 🔘 Set Fn key behavior: e.g., do nothing vs action.
+      };
+      loginwindow = {
+        DisableConsoleAccess = true;                        # 🔒 Disable console login (Cmd+Opt+Fn+F2) for extra security.
+        GuestEnabled = false;                               # 🚷 Disable Guest user at login screen.
+      };
+      NSGlobalDomain = {
+        _HIHideMenuBar = prefs.hideMenuBar;                 # 🫥 Auto hide menu bar
+        "com.apple.mouse.tapBehavior" = 1;                  # 👉 Tap-to-click enabled for built-in trackpads.
+        "com.apple.sound.beep.feedback" = 0;                # 🔇 Disable beep feedback on volume change.
+        "com.apple.sound.beep.volume" = 0.0;                # 🤫 Set alert/“beep” volume to silent.
+        "com.apple.trackpad.forceClick" = false;            # ⛔️ Disable Force Click (haptic deeper click).
+        "com.apple.trackpad.scaling" = 3.0;                 # 🏃‍♂️ Trackpad tracking speed (higher is faster).
+        AppleEnableMouseSwipeNavigateWithScrolls = false;   # 🚫 Disable two-finger swipe navigation in apps.
+        AppleICUForce24HourTime = false;                     # ⏰ Force 24-hour clock regardless of region.
+        AppleInterfaceStyle = "Dark";                       # 🌛 Force Dark appearance ("Dark" or unset for Light).
+        AppleInterfaceStyleSwitchesAutomatically = true;    # 🌓 Allow Auto appearance switching (overrides UI).
+        AppleMetricUnits = 1;                               # 📏 Use metric units.
+        AppleShowScrollBars = "WhenScrolling";              # 🖱️ Show scroll bars only while scrolling: "Automatic", "WhenScrolling", "Always".
+        AppleKeyboardUIMode = 3;
+      };
+      SoftwareUpdate = {
+        AutomaticallyInstallMacOSUpdates = true;            # 🔄 Enable automatic macOS updates.
+      };
+      trackpad = {
+        Clicking = true;                                    # 👆 Tap-to-click for trackpad (may not reflect in UI immediately).
+        # Dragging = true;                                    # ✋ Enable dragging; interacts with drag styles in Accessibility.
+        # TrackpadThreeFingerDrag = true;                     # 🤟 Enable three-finger drag (Accessibility option).
+      };
+      WindowManager = {
+        AutoHide = true;                                    # 🛰️ Auto-hide Stage Manager’s recent apps strip.
+        EnableStandardClickToShowDesktop = false;           # 🚫 Disable “click wallpaper to reveal desktop”.
+        StandardHideDesktopIcons = true;                    # 🧳 Hide desktop items (standard desktop mode).
+        StandardHideWidgets = true;                         # 🪟 Hide desktop widgets (standard desktop mode).
+      };
+    };
+  };
+  security.pam.services.sudo_local.touchIdAuth = true;      # 🟢 Allow sudo with Touch ID for local PAM config.
+  programs.zsh.enable = true;                               # 💻 Ensure zsh profile is managed by nix-darwin.
+  programs.fish.enable = true;
+
+  system.activationScripts.postActivation.text = ''
+    # Link pnpm global config from dotfiles so onlyBuiltDependencies is always set.
+    mkdir -p "$HOME/Library/Preferences/pnpm"
+    ln -sf "$HOME/.config/pnpm/rc" "$HOME/Library/Preferences/pnpm/rc"
+  '';
+}
