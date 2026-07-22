@@ -40,6 +40,7 @@
     ice-bar
     iina
     ipinfo
+    isync
     jq
     ncdu
     neovim
@@ -65,6 +66,7 @@
       "anythingllm"
       "calibre"
       "cleanshot"
+      "codex"
       "ente-auth"
       "font-recursive-mono-nerd-font"
       "ghostty"
@@ -72,6 +74,7 @@
       "itsycal"
       "karabiner-elements"
       "mullvad-vpn"
+      "opencode-desktop"
       "orion"
       "raycast"
       "rectangle"
@@ -101,8 +104,10 @@
       "font-sf-pro"
       "google-chrome@canary"
       "grammarly-desktop"
+      "microsoft-teams"
       "notion"
       "slack"
+      "superhuman"
       # "zoom"
     ];
 
@@ -112,7 +117,6 @@
     # Shared CLI tools for both machines
     commonBrews = [
       "anomalyco/tap/opencode"
-      "codex"
       "eza"
       "httrack"
       "imagemagick"
