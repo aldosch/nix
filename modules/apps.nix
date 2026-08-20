@@ -52,6 +52,7 @@
     sad
     starship
     tlrc
+    tree-sitter
     tmux
     tree
     valkey
@@ -80,13 +81,12 @@
       "signal"
       "soundsource"
       "spotify"
-      "tailscale"
+      "tailscale-app"
       "transmission"
       "typora"
       "ungoogled-chromium"
       "waterfox"
-      "zed"
-    ];
+     ];
 
     # Mac Mini specific applications
     minOnlyCasks = [
