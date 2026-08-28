@@ -53,7 +53,9 @@
     starship
     tlrc
     tree-sitter
-    tmux
+    (tmux.overrideAttrs (old: {
+      configureFlags = (old.configureFlags or []) ++ [ "--disable-jemalloc" ];
+    }))
     tree
     valkey
     zig
@@ -69,6 +71,7 @@
       "cleanshot"
       "codex"
       "ente-auth"
+      "font-geist-mono"
       "font-recursive-mono-nerd-font"
       "ghostty"
       "imageoptim"
@@ -86,6 +89,7 @@
       "typora"
       "ungoogled-chromium"
       "waterfox"
+      "rauchg/typing-stats/typing-stats"
      ];
 
     # Mac Mini specific applications
@@ -140,6 +144,7 @@
     bookOnlyBrews = [
       "awscli"
       "deno"
+      "fx-agent"
       "oven-sh/bun/bun"
       "sf"
     ];
@@ -153,6 +158,11 @@
       "anomalyco/tap"
       "oven-sh/bun"
       "vjeantet/tap"
+      {
+        name = "rauchg/typing-stats";
+        clone_target = "https://github.com/rauchg/typing-stats";
+        trusted = true;
+      }
     ];
 
     onActivation = {
