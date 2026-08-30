@@ -48,10 +48,8 @@ in
       };
       finder = {
         _FXSortFoldersFirst = true;                         # 📂 Sort folders first when sorting by name.
-        _FXSortFoldersFirstOnDesktop = true;                # 📂 Sort folders on desktop.
         AppleShowAllExtensions = true;                      # 🏷️ Always show filename extensions.
         AppleShowAllFiles = true;                           # 👀 Show hidden files (e.g., dotfiles).
-        CreateDesktop = false;                              # 🧹 Hide desktop icons (declutter desktop).
         FXEnableExtensionChangeWarning = false;             # 🚫 Disable warning when changing file extensions.
         FXRemoveOldTrashItems = true;                       # 🗑️ Auto-empty trash items older than 30 days.
         NewWindowTarget = "Other";                          # 📁 New Finder windows target custom path (see below).
@@ -71,15 +69,13 @@ in
       };
       NSGlobalDomain = {
         _HIHideMenuBar = prefs.hideMenuBar;                 # 🫥 Auto hide menu bar
-        "com.apple.mouse.tapBehavior" = 1;                  # 👉 Tap-to-click enabled for built-in trackpads.
         "com.apple.sound.beep.feedback" = 0;                # 🔇 Disable beep feedback on volume change.
-        "com.apple.sound.beep.volume" = 0.0;                # 🤫 Set alert/“beep” volume to silent.
+        "com.apple.sound.beep.volume" = 0.0;                # 🤫 Set alert/"beep" volume to silent.
         "com.apple.trackpad.forceClick" = false;            # ⛔️ Disable Force Click (haptic deeper click).
         "com.apple.trackpad.scaling" = 3.0;                 # 🏃‍♂️ Trackpad tracking speed (higher is faster).
         AppleEnableMouseSwipeNavigateWithScrolls = false;   # 🚫 Disable two-finger swipe navigation in apps.
-        AppleICUForce24HourTime = false;                     # ⏰ Force 24-hour clock regardless of region.
-        AppleInterfaceStyle = "Dark";                       # 🌛 Force Dark appearance ("Dark" or unset for Light).
-        AppleInterfaceStyleSwitchesAutomatically = true;    # 🌓 Allow Auto appearance switching (overrides UI).
+        AppleInterfaceStyle = "Dark";                       # 🌛 Dark appearance (used when Auto mode switches to dark).
+        AppleInterfaceStyleSwitchesAutomatically = true;    # 🌓 Allow Auto appearance switching (light/dark by system).
         AppleMetricUnits = 1;                               # 📏 Use metric units.
         AppleShowScrollBars = "WhenScrolling";              # 🖱️ Show scroll bars only while scrolling: "Automatic", "WhenScrolling", "Always".
         AppleKeyboardUIMode = 3;

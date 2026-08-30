@@ -20,7 +20,6 @@
         exec nvim "$@"
       fi
     '')
-    # httrack
     _1password-cli
     bat
     curl
@@ -40,7 +39,6 @@
     ice-bar
     iina
     ipinfo
-    isync
     jq
     ncdu
     neovim
@@ -71,6 +69,8 @@
       "cleanshot"
       "codex"
       "ente-auth"
+      "font-agave"
+      "font-geist"
       "font-geist-mono"
       "font-recursive-mono-nerd-font"
       "ghostty"
@@ -157,6 +157,7 @@
     taps = [
       "anomalyco/tap"
       "oven-sh/bun"
+      "raskrebs/sonar"
       "vjeantet/tap"
       {
         name = "rauchg/typing-stats";
