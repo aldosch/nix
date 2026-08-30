@@ -77,7 +77,8 @@
       "imageoptim"
       "itsycal"
       "karabiner-elements"
-      "opencode-desktop"
+      # opencode-desktop removed: redundant with the opencode CLI
+      # (anomalyco/tap/opencode) and it was 427MB of unused GUI.
       "orion"
       "raycast"
       "rectangle"
@@ -125,7 +126,9 @@
       "httrack"
       "imagemagick"
       "kew"
-      "node"
+      # node removed: fnm (nix) is the single source of Node. The brew formula
+      # was shadowed by fnm in PATH anyway, so nothing used it directly.
+      # (sf, which depended on it, was removed at the same time.)
       "poppler"
       "raskrebs/sonar/sonar"
       "ripgrep"
@@ -146,7 +149,8 @@
       "deno"
       "fx-agent"
       "oven-sh/bun/bun"
-      "sf"
+      # sf removed: depended on the brew node formula (also removed); fnm
+      # provides node and sf is unused.
     ];
 
     # Determine brews based on hostname
