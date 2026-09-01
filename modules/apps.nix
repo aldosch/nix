@@ -123,9 +123,15 @@
     commonBrews = [
       "anomalyco/tap/opencode"
       "eza"
+      # html2markdown: HTML → GFM markdown CLI, used by the strip-markup fish
+      # function (clipboard/file/stdin/arg in, stdout + pbcopy out).
+      "html2markdown"
       "httrack"
       "imagemagick"
       "kew"
+      # pkgconf: build dep for the locally-patched kew build (~/repos/kew,
+      # installed to ~/.local/bin via kew-sync). See docs/content/docs/packages.mdx.
+      "pkgconf"
       # node removed: fnm (nix) is the single source of Node. The brew formula
       # was shadowed by fnm in PATH anyway, so nothing used it directly.
       # (sf, which depended on it, was removed at the same time.)
