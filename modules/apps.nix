@@ -30,6 +30,7 @@
     ffmpeg
     fish
     fnm
+    fswatch
     fzf
     gh
     git
@@ -64,6 +65,7 @@
     commonCasks = [
       "ableton-live-suite"
       "alfred"
+      "aqua-voice"
       "anythingllm"
       "calibre"
       "cleanshot"
