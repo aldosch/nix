@@ -47,6 +47,7 @@
     openssl
     pika
     rclone
+    restic
     rsync
     sad
     starship
@@ -75,7 +76,9 @@
       "font-geist"
       "font-geist-mono"
       "font-recursive-mono-nerd-font"
-      "ghostty"
+      # ghostty removed: built from ~/repos/ghostty (branch aldo/patches, hides
+      # the tab bar UI). ghostty-sync merges upstream tags + rebuilds; zap would
+      # otherwise uninstall the locally-built app.
       "imageoptim"
       "itsycal"
       "karabiner-elements"
@@ -104,6 +107,7 @@
 
     # MacBook (work) specific applications
     bookOnlyCasks = [
+      "ben0128/nibble/nibble"
       "cursor"
       "cursor-cli"
       "docker-desktop"
@@ -112,6 +116,7 @@
       "google-chrome@canary"
       "grammarly-desktop"
       "microsoft-teams"
+      "mos"
       "notion"
       "slack"
       "superhuman"
@@ -174,6 +179,11 @@
       {
         name = "rauchg/typing-stats";
         clone_target = "https://github.com/rauchg/typing-stats";
+        trusted = true;
+      }
+      # nibble: ad-hoc signed cask, requires trust. See bookOnlyCasks.
+      {
+        name = "ben0128/nibble";
         trusted = true;
       }
     ];
