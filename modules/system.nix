@@ -22,11 +22,14 @@ in
     stateVersion = 6;
     startup.chime = false;
     defaults = {
+      # ⚠️ Never declare sandboxed app domains (com.apple.* container apps like
+      # TextEdit) here: activation runs `set -e`, and on macOS 26 the
+      # `defaults write` into an app container fails (protected/evicted
+      # container), aborting activation before postActivation — every home-dir
+      # copy silently stops. TextEdit's RichText/SmartQuotes prefs live in its
+      # container instead; if it ever reverts to rich text, open TextEdit and
+      # run Format → Make Plain Text once.
       CustomUserPreferences = {
-        "com.apple.TextEdit" = {
-          RichText = false;
-          SmartQuotes = false;
-        };
       };
       dock = {
         appswitcher-all-displays = true;                    # 🔄 Show app switcher (Cmd-Tab) on all displays.
