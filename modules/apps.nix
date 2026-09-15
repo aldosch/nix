@@ -148,7 +148,9 @@
       "uv"
       "vjeantet/tap/alerter"
       "wget"
-      "whisper-cpp"
+      # whisper.cpp: canonical brew formula name (the `whisper-cpp` token is an
+      # alias; drift checks compare installed names, so declare the canonical one)
+      "whisper.cpp"
       "yt-dlp"
     ];
 
