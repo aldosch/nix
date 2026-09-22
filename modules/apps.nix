@@ -84,7 +84,6 @@
       "raycast"
       "rectangle"
       "signal"
-      "spotify"
       "tailscale-app"
       "typora"
       "ungoogled-chromium"
