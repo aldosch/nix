@@ -64,11 +64,8 @@
   homebrew = let
     # Shared applications for both machines
     commonCasks = [
-      "ableton-live-suite"
       "alfred"
       "aqua-voice"
-      "anythingllm"
-      "calibre"
       "cleanshot"
       "codex"
       "ente-auth"
@@ -84,17 +81,13 @@
       "karabiner-elements"
       # opencode-desktop removed: redundant with the opencode CLI
       # (anomalyco/tap/opencode) and it was 427MB of unused GUI.
-      "orion"
       "raycast"
       "rectangle"
       "signal"
-      "soundsource"
       "spotify"
       "tailscale-app"
-      "transmission"
       "typora"
       "ungoogled-chromium"
-      "waterfox"
       "rauchg/typing-stats/typing-stats"
      ];
 
@@ -108,18 +101,13 @@
     # MacBook (work) specific applications
     bookOnlyCasks = [
       "ben0128/nibble/nibble"
-      "cursor"
-      "cursor-cli"
       "docker-desktop"
       "font-sf-mono-nerd-font-ligaturized"
       "font-sf-pro"
       "google-chrome@canary"
-      "grammarly-desktop"
       "microsoft-teams"
-      "mos"
       "notion"
       "slack"
-      "superhuman"
       # "zoom"
     ];
 

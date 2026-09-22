@@ -132,17 +132,12 @@ in
     fi
 
     # ── Disable unwanted background LaunchAgents ──────────────────────
-    # Grammarly Desktop (user explicitly does not want it popping up) and
     # Google's Keystone/Updater agents (redundant: brew manages Chrome Canary
     # updates during nixx). `launchctl disable` persists in the launchd
     # overrides DB, so the agents stay off even when an app update restores
     # its plists. bootout kills any currently loaded instance.
-    # The apps themselves stay installed and launchable.
     aldo_uid=$(id -u aldo)
     for label in \
-      com.grammarly.ProjectLlama.Shepherd \
-      com.grammarly.ProjectLlama.Uninstaller \
-      com.grammarly.ProjectLlama.UpdateService \
       com.google.GoogleUpdater.wake \
       com.google.keystone.agent \
       com.google.keystone.xpcservice; do
