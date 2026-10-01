@@ -30,6 +30,11 @@ in
       # container instead; if it ever reverts to rich text, open TextEdit and
       # run Format → Make Plain Text once.
       CustomUserPreferences = {
+        # Rectangle: maximized windows ignore gaps. Enforced on every
+        # activation so a Rectangle UI toggle doesn't drift it back.
+        "com.knollsoft.Rectangle" = {
+          applyGapsToMaximize = 2;
+        };
       };
       dock = {
         appswitcher-all-displays = true;                    # 🔄 Show app switcher (Cmd-Tab) on all displays.
