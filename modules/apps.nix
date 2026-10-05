@@ -37,7 +37,8 @@
     go
     gum
     htop
-    # ice-bar removed: Ice doesn't run on macOS 27 beta; replaced by the thaw cask.
+    # ice-bar removed: Ice doesn't run on macOS 27 beta, and macOS 27 hides
+    # menu bar icons natively, so no menu bar manager is needed.
     iina
     ipinfo
     jq
@@ -85,8 +86,6 @@
       "rectangle"
       "signal"
       "tailscale-app"
-      # thaw: Ice successor, replaces the removed ice-bar nix package
-      "thaw"
       "typora"
       "ungoogled-chromium"
       "rauchg/typing-stats/typing-stats"
