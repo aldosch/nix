@@ -44,6 +44,11 @@
     jq
     ncdu
     neovim
+    # ninja + python312: build deps for the local ungoogled-chromium fork
+    # (~/repos/ungoogled-chromium). Brew-managed copies keep getting removed
+    # by the zap cleanup below, so they live here instead.
+    ninja
+    python312
     ollama
     openssl
     pika
