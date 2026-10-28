@@ -159,6 +159,7 @@
       "oven-sh/bun/bun"
       # sf removed: depended on the brew node formula (also removed); fnm
       # provides node and sf is unused.
+      "displaylink"
     ];
 
     # Determine brews based on hostname
