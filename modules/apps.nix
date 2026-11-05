@@ -90,7 +90,6 @@
       "raycast"
       "rectangle"
       "signal"
-      "tailscale-app"
       "typora"
       "ungoogled-chromium"
       "rauchg/typing-stats/typing-stats"
