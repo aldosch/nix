@@ -86,7 +86,7 @@
       "itsycal"
       "karabiner-elements"
       # opencode-desktop removed: redundant with the opencode CLI
-      # (anomalyco/tap/opencode) and it was 427MB of unused GUI.
+      # and it was 427MB of unused GUI.
       "raycast"
       "rectangle"
       "signal"
@@ -121,7 +121,9 @@
 
     # Shared CLI tools for both machines
     commonBrews = [
-      "anomalyco/tap/opencode"
+      # opencode not declared: the patched local build (~/.local/bin) is
+      # primary; `brew install anomalyco/tap/opencode` on demand if a
+      # fallback is ever needed (fish wrappers already fall back if present)
       "eza"
       # html2markdown: HTML → GFM markdown CLI, used by the strip-markup fish
       # function (clipboard/file/stdin/arg in, stdout + pbcopy out).
@@ -168,7 +170,6 @@
     enable = true;
 
     taps = [
-      "anomalyco/tap"
       "oven-sh/bun"
       "raskrebs/sonar"
       "vjeantet/tap"
