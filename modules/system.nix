@@ -113,6 +113,13 @@ in
     mkdir -p "$HOME/Library/Preferences/pnpm"
     ln -sf "$HOME/.config/pnpm/rc" "$HOME/Library/Preferences/pnpm/rc"
 
+    # Silence the "Last login:" banner on new terminals: login(1), which
+    # Ghostty and Terminal.app spawn through, only checks the hardcoded
+    # ~/.hushlogin path, so it can't live in ~/.config. Idempotent on every
+    # apply: touch only creates, chown fixes ownership.
+    touch /Users/aldo/.hushlogin
+    chown aldo:staff /Users/aldo/.hushlogin
+
     # ── Spotlight privacy exclusions ──────────────────────────────────
     # Stop Spotlight from indexing pure-cache and store paths (45+ GB that
     # never contain anything searchable). Without this, mds/mds_stores burn
@@ -150,7 +157,41 @@ in
       launchctl disable "user/$aldo_uid/$label" 2>/dev/null || true
     done
     # Keystone also registers a copy in the system domain.
-    launchctl bootout "system/com.google.keystone.xpcservice" 2>/dev/null || true
-    launchctl disable "system/com.google.keystone.xpcservice" 2>/dev/null || true
+    launchctl bootout "system/com.apple.keystone.xpcservice" 2>/dev/null || true
+    launchctl disable "system/com.apple.keystone.xpcservice" 2>/dev/null || true
+
+    # ── Finder sidebar favourites + prefs (one-shot restore) ──────────
+    # `finder-sync` (fish function) snapshots the sidebar .sfl archives and
+    # filtered com.apple.finder prefs into ~/.config/finder. This restores
+    # them once per machine; the marker lives outside the repo so a fresh
+    # clone always triggers it. Copies go through Finder via osascript
+    # because the sharedfilelist dir is TCC-locked: no Full Disk Access
+    # needed, just the invoking terminal's Finder automation grant (one
+    # approval prompt on the first apply that runs it, once per terminal
+    # app). On any failure no marker is written, so the next apply retries.
+    finder_marker="/Users/aldo/.local/state/finder-sync.installed"
+    if [ ! -e "$finder_marker" ] && [ -d "/Users/aldo/.config/finder" ]; then
+      finder_ok=1
+      for f in /Users/aldo/.config/finder/*.sfl*; do
+        [ -e "$f" ] || continue
+        sudo -u aldo osascript -e "tell application \"Finder\" to duplicate (POSIX file \"$f\") to folder \"com.apple.sharedfilelist\" of folder \"Application Support\" of folder \"Library\" of home with replacing" >/dev/null 2>&1 || finder_ok=0
+      done
+      if [ -f /Users/aldo/.config/finder/com.apple.finder.plist ]; then
+        if plutil -lint /Users/aldo/.config/finder/com.apple.finder.plist >/dev/null 2>&1; then
+          sudo -u aldo defaults import com.apple.finder /Users/aldo/.config/finder/com.apple.finder.plist || finder_ok=0
+        else
+          finder_ok=0
+        fi
+      fi
+      if [ "$finder_ok" = 1 ]; then
+        killall sharedfilelistd 2>/dev/null || true
+        killall Finder 2>/dev/null || true
+        mkdir -p /Users/aldo/.local/state 2>/dev/null || true
+        touch "$finder_marker" && chown aldo:staff "$finder_marker" || true
+        echo "finder: sidebar favourites + prefs restored"
+      else
+        echo "finder: restore skipped, retries on next apply" >&2
+      fi
+    fi
   '';
 }

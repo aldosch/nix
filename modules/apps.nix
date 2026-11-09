@@ -109,6 +109,10 @@
       "font-sf-mono-nerd-font-ligaturized"
       "font-sf-pro"
       "google-chrome@canary"
+      # herdr: agent-runner app (herdr.dev). auto_updates cask, so the app
+      # self-updates and brew's non-greedy upgrade skips it. Config lives in
+      # ~/.config/herdr-app/ (tracked, app-written files gitignored).
+      "herdr-app"
       "microsoft-teams"
       "notion"
       "slack"
