@@ -115,6 +115,12 @@
       "herdr-app"
       "microsoft-teams"
       "notion"
+      # openchamber: GUI workspace around opencode (openchamber.dev). Requires
+      # the opencode 2.x server API, so it runs its bundled 2.x opencode; the
+      # patched 1.x build can't serve it. Reads the shared ~/.config/opencode.
+      # auto_updates cask, so the app self-updates. App state in
+      # ~/.config/openchamber/ (gitignored). See docs/content/docs/agent.mdx.
+      "openchamber"
       "slack"
       # "zoom"
     ];
@@ -162,6 +168,9 @@
       "deno"
       "fx-agent"
       "oven-sh/bun/bun"
+      # tfenv: terraform version manager. State (installed terraform versions
+      # + version pin) lives in ~/.config/tfenv (gitignored).
+      "tfenv"
       # sf removed: depended on the brew node formula (also removed); fnm
       # provides node and sf is unused.
       # displaylink removed: no longer a homebrew formula (brew bundle fails on it)
